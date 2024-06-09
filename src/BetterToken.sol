@@ -12,15 +12,4 @@ contract BetterToken is ERC20 {
         _mint(msg.sender, initialSupply);
         i_tokensMinted = true;
     }
-
-    modifier canMint() {
-        if (i_tokensMinted) {
-            revert BetterToken__AlreadyMinted();
-        }
-        _;
-    }
-
-    function mint(address to, uint256 amount) external canMint {
-        _mint(to, amount);
-    }
 }

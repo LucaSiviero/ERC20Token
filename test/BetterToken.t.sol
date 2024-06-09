@@ -24,11 +24,6 @@ contract BetterTokenTest is Test {
         assertEq(initialSupply, 1000000 ether);
     }
 
-    function testUserCantMint() public {
-        vm.expectRevert(BetterToken.BetterToken__AlreadyMinted.selector);
-        betterToken.mint(msg.sender, 100);
-    }
-
     function testTransferToUser() public {
         vm.prank(msg.sender);
         betterToken.transfer(bob, STARTING_BALANCE);
