@@ -59,4 +59,19 @@ contract BetterTokenTest is Test {
             betterToken.balanceOf(alice) == aliceInitialBalance + transferAmout
         );
     }
+
+    function testTransferFromFailsWithoutAllowance() public sendMoneyToBob {
+        vm.prank(alice);
+        vm.expectRevert();
+        betterToken.transferFrom(bob, alice, 1 ether);
+    }
+
+    function testTransferFromFailsWhenExceedAllowance() public sendMoneyToBob {
+        vm.prank(bob);
+        betterToken.approve(alice, 1000);
+
+        vm.prank(alice);
+        vm.expectRevert();
+        betterToken.transferFrom(bob, alice, 1001);
+    }
 }
