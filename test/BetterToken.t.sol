@@ -19,7 +19,7 @@ contract BetterTokenTest is Test {
         betterToken = deployBetterToken.run();
     }
 
-    function testInitialMinting() public {
+    function testInitialMinting() public view {
         uint256 initialSupply = betterToken.totalSupply();
         assertEq(initialSupply, 1000000 ether);
     }
